@@ -4,7 +4,7 @@ import BookItem from "./BookItem"
 
 const BooksList = (props) => {
   const [books, setBooks] = useState([])
-  
+
   const getBooks = async () => {
     try {
       const response = await fetch("/api/v1/books")
@@ -35,7 +35,7 @@ const BooksList = (props) => {
 
   return (
     <div>
-      <h1>My Book Wishlist</h1>
+      <h1>My Book List</h1>
       <ul className="books">
         {bookItems}
       </ul>

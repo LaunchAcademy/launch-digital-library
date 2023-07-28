@@ -6,7 +6,7 @@ import BooksList from "./BooksList"
 import BookForm from "./BookForm"
 import BookShow from "./BookShow"
 
-import "../assets/scss/main.scss"
+import "../assets/main.css"
 
 const App = (props) => {
   return (

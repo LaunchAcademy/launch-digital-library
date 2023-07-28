@@ -2,7 +2,6 @@ import React, { useState } from "react"
 import { Redirect } from "react-router-dom"
 
 import ErrorList from "./ErrorList"
-import translateServerErrors from "../services/translateServerErrors"
 
 const BookForm = (props) => {
   const [bookRecord, setBookRecord] = useState({
@@ -27,8 +26,7 @@ const BookForm = (props) => {
       if (!response.ok) {
         if(response.status === 422) {
           const body = await response.json()
-          const newErrors = translateServerErrors(body.errors)
-          return setErrors(newErrors)
+          return setErrors(body.errors)
         } else {
           const errorMessage = `${response.status} (${response.statusText})`
           const error = new Error(errorMessage)
@@ -68,12 +66,10 @@ const BookForm = (props) => {
   if (shouldRedirect) {
     return <Redirect push to="/books" />
   }
-  console.log(errors);
 
   return (
     <form onSubmit={handleSubmit}>
       <h1>Add a New Book</h1>
-      <ErrorList errors={errors} />
       <label htmlFor="title">Title
         <input
           id="title"
