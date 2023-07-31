@@ -8,7 +8,7 @@ const BookForm = (props) => {
     title: "",
     author: "",
     description: "",
-    pageCount: "",
+    page_count: "",
     fiction: false
   })
   const [errors, setErrors] = useState([])
@@ -24,20 +24,20 @@ const BookForm = (props) => {
         body: JSON.stringify(bookRecord)
       })
       if (!response.ok) {
-        if(response.status === 422) {
+        if (response.status === 422) {
           const body = await response.json()
           return setErrors(body.errors)
         } else {
           const errorMessage = `${response.status} (${response.statusText})`
           const error = new Error(errorMessage)
-          throw(error)
+          throw error
         }
       } else {
         const body = await response.json()
-        console.log("Posted successfully!", body);
+        console.log("Posted successfully!", body)
         setShouldRedirect(true)
       }
-    } catch(err) {
+    } catch (err) {
       console.error(`Error in fetch: ${err.message}`)
     }
   }
@@ -70,7 +70,8 @@ const BookForm = (props) => {
   return (
     <form onSubmit={handleSubmit}>
       <h1>Add a New Book</h1>
-      <label htmlFor="title">Title
+      <label htmlFor="title">
+        Title
         <input
           id="title"
           type="text"
@@ -80,7 +81,8 @@ const BookForm = (props) => {
         />
       </label>
 
-      <label htmlFor="author">Author
+      <label htmlFor="author">
+        Author
         <input
           id="author"
           type="text"
@@ -90,17 +92,19 @@ const BookForm = (props) => {
         />
       </label>
 
-      <label htmlFor="pageCount">Page Count
+      <label htmlFor="page_count">
+        Page Count
         <input
-          id="pageCount"
+          id="page_count"
           type="number"
-          name="pageCount"
+          name="page_count"
           onChange={handleChange}
-          value={bookRecord.pageCount}
+          value={bookRecord.page_count}
         />
       </label>
 
-      <label htmlFor="description">Description
+      <label htmlFor="description">
+        Description
         <textarea
           id="description"
           name="description"
@@ -109,7 +113,8 @@ const BookForm = (props) => {
         />
       </label>
 
-      <label htmlFor="fiction">Fiction?
+      <label htmlFor="fiction">
+        Fiction?
         <input
           id="fiction"
           type="checkbox"
